@@ -1,14 +1,26 @@
 /* MyForm.css */
-.Card {
-  background-color: #def9668a;
-  margin-top: 4%;
-  margin-left: 23%;
-  width: 50%;
-}
+
 
 .card-title {
   font-family: ITALIC SERIF;
-  margin-top: -20px;
   font-size: x-large;
   color: #1677ff;
 }
+.img{
+  height:98.2vh;
+  width: 900px;
+  margin-left: -8px;
+  margin-top: -7px;
+}
+
+.split-container {
+  display: flex;
+}
+
+.left-panel,
+.right-panel {
+  flex: 1; 
+}
+
+
+
