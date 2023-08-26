@@ -1,0 +1,28 @@
+/* Form - Styling */
+.ant-form-item {
+  margin-bottom: 5px; /* Optional: Adjust spacing between form items */
+}
+
+.ant-form-item-label {
+  line-height: 1.2; /* Adjust the line height to control the row height */
+}
+
+.ant-form-item-control-input {
+  line-height: 1.2; /* Match the line height for consistency */
+}
+/* Form - Styling - Completed */
+
+/* MyForm.css */
+.ant-card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.ant-form-item-label, .ant-form-item-control-input-content, .ant-card-head-title {
+  font-family: ITALIC SERIF; 
+}
+
+
+
+

@@ -1,0 +1,14 @@
+/* MyForm.css */
+.Card {
+  background-color: #def9668a;
+  margin-top: 4%;
+  margin-left: 23%;
+  width: 50%;
+}
+
+.card-title {
+  font-family: ITALIC SERIF;
+  margin-top: -20px;
+  font-size: x-large;
+  color: #1677ff;
+}
