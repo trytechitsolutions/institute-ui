@@ -7,20 +7,14 @@
   color: #1677ff;
 }
 .img{
-  height:98.2vh;
+  height:99vh;
   width: 900px;
   margin-left: -8px;
-  margin-top: -7px;
+  /* margin-top: -7px; */
 }
 
-.split-container {
-  display: flex;
-}
 
-.left-panel,
-.right-panel {
-  flex: 1; 
-}
+
 
 
 
