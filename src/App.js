@@ -1,5 +1,5 @@
 import './App.css';
-import LoginAndRegistration from "./components/login_registration/LoginAndRegistration";
+import LoginAndRegistration from "./Components/LoginAndRegistration/LoginAndRegistration";
 
 function App() {
   return (
