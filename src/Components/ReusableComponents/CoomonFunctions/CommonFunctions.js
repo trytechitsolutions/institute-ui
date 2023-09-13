@@ -6,6 +6,19 @@ export const validatePhoneNumber = (_, value) => {
     return Promise.resolve();
 };
 
+export const validateConfirmPassword = (_, value, arr) => {
+    let pwd = '';
+    arr.forEach(ele => {
+        if (ele.name === "password") {
+            pwd = ele.value;
+        }
+    });
+    if (value && pwd && value !== pwd) {
+        return Promise.reject('Passwords do not match');
+    }
+    return Promise.resolve();
+};
+
 export const dateFormat = (val) => {
     const date = new Date(val);
     return date.toLocaleDateString();
@@ -27,5 +40,18 @@ export const preparePayLoad = (arr) => {
     arr.forEach(ele => {
         obj[ele.name] = ele.value;
     });
+
+    // File data append
+    const fileobj = arr.find(x => x.type === "file");
+    if (fileobj) {
+        const formData = new FormData();
+        fileobj.value.forEach((file) => {
+            formData.append('files', file.originFileObj);
+        });
+        delete obj[fileobj.name];
+        formData.append('payload', obj);
+        return formData;
+    }
+
     return obj;
 }

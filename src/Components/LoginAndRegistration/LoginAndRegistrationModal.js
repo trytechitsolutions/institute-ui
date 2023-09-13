@@ -1,17 +1,5 @@
-import { validatePhoneNumber } from "../ReusableComponents/CoomonFunctions/CommonFunctions";
+import { validatePhoneNumber, validateConfirmPassword } from "../ReusableComponents/CoomonFunctions/CommonFunctions";
 
-export const validatePasswordConfirm = (_, value) => {
-    let pwd = '';
-    formdata.fieldsArray.forEach(ele => {
-        if (ele.name === "password") {
-            pwd = ele.value;
-        }
-    });
-    if (value && pwd && value !== pwd) {
-        return Promise.reject('Passwords do not match');
-    }
-    return Promise.resolve();
-};
 
 export const formdata = {
     formlayout: "vertical",
@@ -25,7 +13,7 @@ export const formdata = {
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -37,19 +25,19 @@ export const formdata = {
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
             type: "text",
             label: "Last Name",
             name: "lasstName",
-            rules: [{ required: true, message: 'Please enter Last name' }],
+            rules: [{ required: true, message: 'Please enter last name' }],
             placeholder: "Last Name",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -57,14 +45,14 @@ export const formdata = {
             label: "Email",
             name: "email",
             rules: [
-                { required: true, message: 'Please enter your email' },
+                { required: true, message: 'Please enter email' },
                 { type: 'email', message: 'Please enter a valid email' },
             ],
             placeholder: "Email",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -72,14 +60,14 @@ export const formdata = {
             label: "Password",
             name: "password",
             rules: [
-                { required: true, message: 'Please enter your password' },
+                { required: true, message: 'Please enter password' },
                 { min: 8, message: 'Password must be at least 8 characters long' }
             ],
             placeholder: "Password",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -87,14 +75,15 @@ export const formdata = {
             label: "Confirm Password",
             name: "confirmPassword",
             rules: [
-                { required: true, message: 'Please enter your Confirm Password' },
-                { validator: validatePasswordConfirm }
+                { required: true, message: 'Please enter Confirm Password' },
+                { validator: (_, value) => validateConfirmPassword(_, value, formdata.fieldsArray) },
+
             ],
             placeholder: "Confirm Password",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -102,14 +91,14 @@ export const formdata = {
             label: "Contact Number",
             name: "contactNumber",
             rules: [
-                { required: true, message: 'Please enter your contact number' },
+                { required: true, message: 'Please enter contact number' },
                 { validator: validatePhoneNumber }
             ],
             placeholder: "Contact Number",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -117,13 +106,13 @@ export const formdata = {
             label: "Institute Name",
             name: "instituteName",
             rules: [
-                { required: true, message: 'Please enter your institute name' },
+                { required: true, message: 'Please enter institute name' },
             ],
             placeholder: "Institute Name",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -131,13 +120,13 @@ export const formdata = {
             label: "Country",
             name: "country",
             rules: [
-                { required: true, message: 'Please enter your country' },
+                { required: true, message: 'Please enter country' },
             ],
             placeholder: "Country",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -145,13 +134,13 @@ export const formdata = {
             label: "State",
             name: "state",
             rules: [
-                { required: true, message: 'Please enter your state' },
+                { required: true, message: 'Please enter state' },
             ],
             placeholder: "State",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -159,13 +148,13 @@ export const formdata = {
             label: "City",
             name: "city",
             rules: [
-                { required: true, message: 'Please enter your city' },
+                { required: true, message: 'Please enter city' },
             ],
             placeholder: "City",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         {
@@ -173,13 +162,13 @@ export const formdata = {
             label: "Zip Code",
             name: "zipCode",
             rules: [
-                { required: true, message: 'Please enter your zip code' },
+                { required: true, message: 'Please enter zip code' },
             ],
             placeholder: "Zip Code",
             xs: 24,
             sm: 16,
             md: 12,
-            lg: 11,
+            lg: 12,
             value: "",
         },
         // {
@@ -192,7 +181,7 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 11,
+        //     lg: 12,
         //     value: "",
         // },
         // {
@@ -206,7 +195,7 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 11,
+        //     lg: 12,
         //     value: "",
         //     rows: 4,
         // },
@@ -220,7 +209,7 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 11,
+        //     lg: 12,
         //     value: "",
         // },
         // {
@@ -233,7 +222,7 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 11,
+        //     lg: 12,
         //     value: "",
         //     options: [
         //         { id: "1", value: "option1" },
@@ -251,13 +240,33 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 11,
+        //     lg: 12,
         //     value: "",
         //     options: [
         //         { id: "1", value: "option1" },
         //         { id: "2", value: "option2" }
         //     ],
         // }
+        // {
+        //     type: "file",
+        //     label: "File Upload",
+        //     name: "file",
+        //     multiple:true,
+        //     showUploadList:true,
+        //     rules: [
+        //         { required: true, message: 'Please choose file!' },
+        //     ],
+        //     xs: 24,
+        //     sm: 16,
+        //     md: 12,
+        //     lg: 12,
+        //     value: "",
+        // }
 
+    ],
+    buttons: [
+        { type: "primary", name: "Cancel", fun: "Cancel" },
+        { type: "default", name: "Reset", fun: "Reset" },
+        { type: "primary", name: "Register", fun: "Register" },
     ]
 }
