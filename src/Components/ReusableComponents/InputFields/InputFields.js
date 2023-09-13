@@ -1,34 +1,35 @@
 
-import React, { forwardRef, useImperativeHandle } from 'react';
-import { Form, Input, InputNumber, DatePicker, Checkbox, Select, Radio, Col, Row } from 'antd';
+import React from 'react';
+import { Form, Input, InputNumber, DatePicker, Checkbox, Upload, Button, Select, Radio, Col, Row } from 'antd';
+import { UserOutlined, LockOutlined, PhoneOutlined, UploadOutlined } from '@ant-design/icons';
 import './InputFields.css';
-import { UserOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
 
-const Input_Fields = forwardRef((props, ref) => {
+
+const Input_Fields = (props) => {
     const [form] = Form.useForm();
-    const { modaldata, onChange, showError, submitData } = props;
+    const { modaldata, onChange, submitFormData } = props;
 
     const handleInputChange = (name, type, value) => {
         let obj = { name, type, value }
         onChange(obj);
     };
 
-    function reSetForm() {
-        form.resetFields()
-    }
-
     const validateForm = () => {
         form.validateFields().then(res => {
-            submitData(res)
+            submitFormData(res)
         }).catch((err) => {
-            showError(err);
+            console.log(err)
         });
     };
-
-    useImperativeHandle(ref, () => ({
-        reSetForm,
-        validateForm
-    }));
+    const handlButton = (name) => {
+        if (name.toLowerCase() === "register") {
+            validateForm();
+        } else if (name.toLowerCase() === "reset") {
+            form.resetFields()
+        } else {
+            console.log("cancel")
+        }
+    }
 
     return (
         <div>
@@ -100,12 +101,42 @@ const Input_Fields = forwardRef((props, ref) => {
                                         </Radio.Group>
                                     </Form.Item>
                                 )}
+                                {ele.type === "file" && (
+                                    <Form.Item label={""} name={ele.name} rules={ele.rules} valuePropName="fileList"
+                                        getValueFromEvent={(e) => {
+                                            let fileList = e && e.fileList ? e.fileList : [];
+                                            if (!Array.isArray(fileList) && typeof fileList === "object" && fileList.uid) {
+                                                fileList = [fileList];
+                                            }
+                                            fileList = Array.isArray(fileList) ? fileList : [];
+                                            return fileList;
+                                        }}>
+                                        <Upload
+                                            beforeUpload={() => false}
+                                            showUploadList={ele.showUploadList} // Show file list after uploading
+                                            multiple={ele.multiple} // Allow multiple file selection
+                                            onChange={(event) => handleInputChange(ele.name, ele.type, event.fileList)}
+                                        >
+                                            <Button icon={<UploadOutlined />}>{ele.label}</Button>
+                                        </Upload>
+                                    </Form.Item>
+                                )}
                             </Col>
                         )}
                     </Row>
                 </Form>
             }
-        </div>
+            <br />
+            {modaldata.buttons.length > 0 &&
+                <Row justify="end">
+                    {modaldata.buttons.map((ele, i) =>
+                        <Col xs={24} sm={12} md={8} lg={6} xl={3} key={i}>
+                            <Button type={ele.type} onClick={() => handlButton(ele.fun)}>{ele.name}</Button>
+                        </Col>
+                    )}
+                </Row>
+            }
+        </div >
     )
-})
+}
 export default Input_Fields;
