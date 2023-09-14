@@ -5,8 +5,8 @@ import Sample from './Components/Sample/Sample';
 function App() {
   return (
     <div className="App" >
-      {/* <LoginAndRegistration/> */}
-      <Sample />
+      <LoginAndRegistration/>
+      {/* <Sample /> */}
     </div>
   );
 }

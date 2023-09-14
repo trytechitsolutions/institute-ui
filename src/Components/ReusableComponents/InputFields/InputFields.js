@@ -131,7 +131,7 @@ const InputFields = (props) => {
             {modaldata.buttons.length > 0 &&
                 <Row justify="end">
                     {modaldata.buttons.map((ele, i) =>
-                        <Col xs={24} sm={12} md={8} lg={6} xl={3} key={i}>
+                        <Col xs={24} sm={12} md={12} lg={4}  key={i}>
                             <Button type={ele.type} onClick={() => handlButton(ele.fun)}>{ele.name}</Button>
                         </Col>
                     )}
