@@ -7,7 +7,7 @@
 }
 .img{
   height:99.5vh;
-  width: 900px;
+  width: 100%;
   margin-left: -8px;
   /* margin-top: -7px; */
 }
@@ -20,9 +20,12 @@
 .right-panel {
   flex: 1; 
 }
+.left-panel{
+  width: 50%;
+}
 
 
-@media (max-width: 768px) {
+@media (max-width: 668px) {
   .split-container {
     flex-direction: row; /* Switch to a row layout on smaller screens */
     background-image: url("../../images/image.jpg");
@@ -37,13 +40,10 @@
     width: 1%; /* Divide the space equally between the panels */
   }
 
-  .right-panel {
-    width: 50%; /* Divide the space equally between the panels */
-  }
+
 
   .img{
     display: none;
-    /* margin-top: -7px; */
   }
 }
 

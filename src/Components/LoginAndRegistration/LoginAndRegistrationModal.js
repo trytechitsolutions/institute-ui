@@ -265,8 +265,8 @@ export const formdata = {
 
     ],
     buttons: [
-        { type: "primary", name: "Cancel", fun: "Cancel" },
-        { type: "default", name: "Reset", fun: "Reset" },
         { type: "primary", name: "Register", fun: "Register" },
+        { type: "default", name: "Reset", fun: "Reset" },
+        { type: "primary", name: "Cancel", fun: "Cancel" },
     ]
 }

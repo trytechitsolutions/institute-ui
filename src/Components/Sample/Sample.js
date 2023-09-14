@@ -32,7 +32,7 @@ const Sample = () => {
         pageSizeOptions: ['10', '20', '30'],
         tableData: tableData,
         columns: columns,
-        showChecbox: true,
+        showChecbox: false,
         showEdit: true,
         showDelete: true,
         showFilter: true,
