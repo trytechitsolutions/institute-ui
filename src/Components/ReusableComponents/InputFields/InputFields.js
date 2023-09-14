@@ -5,7 +5,7 @@ import { UserOutlined, LockOutlined, PhoneOutlined, UploadOutlined } from '@ant-
 import './InputFields.css';
 
 
-const Input_Fields = (props) => {
+const InputFields = (props) => {
     const [form] = Form.useForm();
     const { modaldata, onChange, submitFormData } = props;
 
@@ -21,6 +21,7 @@ const Input_Fields = (props) => {
             console.log(err)
         });
     };
+    
     const handlButton = (name) => {
         if (name.toLowerCase() === "register") {
             validateForm();
@@ -139,4 +140,4 @@ const Input_Fields = (props) => {
         </div >
     )
 }
-export default Input_Fields;
+export default InputFields;
