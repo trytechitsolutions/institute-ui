@@ -8,11 +8,10 @@ export const validatePhoneNumber = (_, value) => {
 
 export const validateConfirmPassword = (_, value, arr) => {
     let pwd = '';
-    arr.forEach(ele => {
-        if (ele.name === "password") {
-            pwd = ele.value;
-        }
-    });
+    const pwdObj = arr.find(ele => ele.name === "password");
+    if (pwdObj) {
+        pwd = pwdObj.value;
+    }
     if (value && pwd && value !== pwd) {
         return Promise.reject('Passwords do not match');
     }
