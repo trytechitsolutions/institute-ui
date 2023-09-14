@@ -14,3 +14,6 @@
   .ant-form-item-label, .ant-form-item-control-input-content, .ant-card-head-title {
     font-family: ITALIC SERIF; 
   }
+  .btn{
+    padding: 1rem;
+  }
