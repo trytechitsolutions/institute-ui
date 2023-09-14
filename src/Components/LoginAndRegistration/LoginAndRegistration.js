@@ -28,7 +28,7 @@ const LoginAndRegistration = () => {
           <Col xs={2} sm={2} md={2} lg={1}></Col>
           <Col xs={22} sm={22} md={22} lg={23}>
             <Row justify="center">
-              <Col span={14}>
+              <Col span={16}>
                 <h4 className="card-title">Institute Management Registration</h4>
               </Col>
               <InputFields modaldata={formdata} onChange={onChange} submitFormData={submitFormData} />
