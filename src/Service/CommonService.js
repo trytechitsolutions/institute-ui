@@ -8,11 +8,11 @@ export const apiRequest = async (url, method, data) => {
         url,
         data,
     };
-    const token = securedLocalStorage.get("token");
+    const token = securedLocalStorage.getToken("token");
     if (token) {
         console.log("hii")
         const headers = {
-            "token": securedLocalStorage.get("token"),
+            token,
             "Authorization": "1",
             "Access-Control-Allow-Origin": "http://treeviewdatamapping-env.eba-jsbuwrm8.us-east-2.elasticbeanstalk.com/",
             "Access-Control-Allow-Headers": "Content-Type, Authorization, *",
@@ -24,8 +24,7 @@ export const apiRequest = async (url, method, data) => {
 
     try {
         const response = await axios(config);
-        console.log(response)
-        return response.data;
+        return response;
     } catch (error) {
         return error;
     }

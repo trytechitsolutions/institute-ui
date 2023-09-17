@@ -38,6 +38,9 @@ export const preparePayLoad = (arr) => {
     let obj = {};
     arr.forEach(ele => {
         obj[ele.name] = ele.value;
+        if(ele.type==="phonenumber"){
+            obj[ele.name] = ele.value.toString();  
+        }
     });
 
     // File data append

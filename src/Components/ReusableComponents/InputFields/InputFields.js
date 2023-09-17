@@ -21,9 +21,9 @@ const InputFields = (props) => {
             console.log(err)
         });
     };
-    
+
     const handlButton = (name) => {
-        if (name.toLowerCase() === "register") {
+        if (name.toLowerCase() === "submit") {
             validateForm();
         } else if (name.toLowerCase() === "reset") {
             form.resetFields()
@@ -40,42 +40,42 @@ const InputFields = (props) => {
                         {modaldata.fieldsArray.map((ele, i) =>
                             <Col xs={ele.xs} sm={ele.sm} md={ele.md} lg={ele.lg} key={i} >
                                 {ele.type === "text" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }} >
                                         <Input placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value, event.target.type)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "text-area" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <Input.TextArea rows={ele.rows} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value, event.target.type)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "email" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <Input prefix={<UserOutlined />} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "password" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }} >
                                         <Input.Password prefix={<LockOutlined />} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "number" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <InputNumber style={{ width: '100%' }} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "phonenumber" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <InputNumber style={{ width: '100%' }} prefix={<PhoneOutlined />} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "date" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules}>
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <DatePicker style={{ width: '100%' }} onChange={(event) => handleInputChange(ele.name, ele.type, event)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "checkbox" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} valuePropName="checked">
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} valuePropName="checked" labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <Checkbox style={{ width: '100%', marginTop: "20px" }} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.checked)}>
                                             {ele.rules[0].required && <span style={{ color: "red" }}>*</span>}
                                             check box
@@ -83,7 +83,7 @@ const InputFields = (props) => {
                                     </Form.Item>
                                 )}
                                 {ele.type === "dropdown" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} >
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <Select placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event)}>
                                             {ele.options.map((ele, i) =>
                                                 <Select.Option key={i} value={ele.id}>{ele.value}</Select.Option>
@@ -93,7 +93,7 @@ const InputFields = (props) => {
                                     </Form.Item>
                                 )}
                                 {ele.type === "radio" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} >
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
                                         <Radio.Group onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)}>
                                             {ele.options.map((ele, i) =>
                                                 <Radio key={i} value={ele.id}>{ele.value}</Radio >
@@ -103,7 +103,7 @@ const InputFields = (props) => {
                                     </Form.Item>
                                 )}
                                 {ele.type === "file" && (
-                                    <Form.Item label={""} name={ele.name} rules={ele.rules} valuePropName="fileList"
+                                    <Form.Item label={""} name={ele.name} rules={ele.rules} valuePropName="fileList" labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}
                                         getValueFromEvent={(e) => {
                                             let fileList = e && e.fileList ? e.fileList : [];
                                             if (!Array.isArray(fileList) && typeof fileList === "object" && fileList.uid) {
@@ -128,10 +128,10 @@ const InputFields = (props) => {
                 </Form>
             }
             <br />
-            {modaldata.buttons.length > 0 &&
-                <Row justify="end">
-                    {modaldata.buttons.map((ele, i) =>
-                        <Col className="btn"  key={i}>
+            {modaldata.button && modaldata.button.buttons && modaldata.button.buttons.length > 0 &&
+                <Row justify={modaldata.button.justify}>
+                    {modaldata.button.buttons.map((ele, i) =>
+                        <Col className="btn" key={i}>
                             <Button type={ele.type} onClick={() => handlButton(ele.fun)}>{ele.name}</Button>
                         </Col>
                     )}

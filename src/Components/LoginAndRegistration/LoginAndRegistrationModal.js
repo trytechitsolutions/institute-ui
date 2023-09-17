@@ -1,7 +1,7 @@
 import { validatePhoneNumber, validateConfirmPassword } from "../ReusableComponents/CoomonFunctions/CommonFunctions";
 
 
-export const formdata = {
+export const regForm = {
     formlayout: "vertical",
     fieldsArray: [
         {
@@ -14,6 +14,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -26,6 +28,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -38,6 +42,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -53,6 +59,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -68,6 +76,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -76,7 +86,7 @@ export const formdata = {
             name: "confirmPassword",
             rules: [
                 { required: true, message: 'Please enter Confirm Password' },
-                { validator: (_, value) => validateConfirmPassword(_, value, formdata.fieldsArray) },
+                { validator: (_, value) => validateConfirmPassword(_, value, regForm.fieldsArray) },
 
             ],
             placeholder: "Confirm Password",
@@ -84,6 +94,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -99,6 +111,8 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -114,7 +128,30 @@ export const formdata = {
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
+        },
+        {
+            type: "dropdown",
+            label: "Type",
+            name: "type",
+            rules: [
+                { required: true, message: 'Please choose any option!' },
+            ],
+            xs: 24,
+            sm: 16,
+            md: 12,
+            lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
+            value: "",
+            options: [
+                { id: "School", value: "School" },
+                { id: "College", value: "College" },
+                { id: "Coaching center", value: "Coaching center" }
+            ],
+            placeholder: "Selec option",
         },
         {
             type: "text",
@@ -122,12 +159,15 @@ export const formdata = {
             name: "addressCountry",
             rules: [
                 { required: true, message: 'Please enter country' },
+                { min: 4, message: 'Country must be at least 4 characters long' }
             ],
             placeholder: "Country",
             xs: 24,
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -136,12 +176,15 @@ export const formdata = {
             name: "addressState",
             rules: [
                 { required: true, message: 'Please enter state' },
+                { min: 4, message: 'State must be at least 4 characters long' }
             ],
             placeholder: "State",
             xs: 24,
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -150,12 +193,15 @@ export const formdata = {
             name: "addressCity",
             rules: [
                 { required: true, message: 'Please enter city' },
+                { min: 4, message: 'City must be at least 4 characters long' }
             ],
             placeholder: "City",
             xs: 24,
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         {
@@ -164,12 +210,15 @@ export const formdata = {
             name: "addressZipCode",
             rules: [
                 { required: true, message: 'Please enter zip code' },
+                { min: 6, max: 6, message: 'Zip Code should be 6 digit' }
             ],
             placeholder: "Zip Code",
             xs: 24,
             sm: 16,
             md: 12,
             lg: 12,
+            labelCol: 0,
+            wrapperCol: 0,
             value: "",
         },
         // {
@@ -182,7 +231,9 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 12,
+        //       lg: 12,
+        // labelCol: 0,
+        // wrapperCol: 0,
         //     value: "",
         // },
         // {
@@ -196,7 +247,9 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 12,
+        //       lg: 12,
+        // labelCol: 0,
+        // wrapperCol: 0,
         //     value: "",
         //     rows: 4,
         // },
@@ -210,7 +263,9 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 12,
+        //       lg: 12,
+        // labelCol: 0,
+        // wrapperCol: 0,
         //     value: "",
         // },
         // {
@@ -223,7 +278,9 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 12,
+        //       lg: 12,
+        // labelCol: 0,
+        // wrapperCol: 0,
         //     value: "",
         //     options: [
         //         { id: "1", value: "option1" },
@@ -241,7 +298,9 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 12,
+        //       lg: 12,
+        // labelCol: 0,
+        // wrapperCol: 0,
         //     value: "",
         //     options: [
         //         { id: "1", value: "option1" },
@@ -260,14 +319,68 @@ export const formdata = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //     lg: 12,
+        //       lg: 12,
+        // labelCol: 0,
+        // wrapperCol: 0,
         //     value: "",
         // }
 
     ],
-    buttons: [
-        { type: "primary", name: "Register", fun: "Register" },
-        { type: "default", name: "Reset", fun: "Reset" },
-        { type: "primary", name: "Cancel", fun: "Cancel" },
-    ]
+    button: {
+        justify: "end",
+        buttons: [
+            { type: "primary", name: "Register", fun: "submit" },
+            { type: "default", name: "Reset", fun: "reset" },
+            { type: "primary", name: "Cancel", fun: "cancel" },
+        ]
+    }
+
+}
+
+export const loginForm = {
+    formlayout: "",
+    fieldsArray: [
+        {
+            type: "email",
+            label: "Email",
+            name: "email",
+            rules: [
+                { required: true, message: 'Please enter email' },
+                { type: 'email', message: 'Please enter a valid email' },
+            ],
+            placeholder: "Email",
+            xs: 24,
+            sm: 16,
+            md: 24,
+            lg: 24,
+            labelCol: 4,
+            wrapperCol: 16,
+            value: "",
+        },
+        {
+            type: "password",
+            label: "Password",
+            name: "password",
+            rules: [
+                { required: true, message: 'Please enter password' },
+                { min: 8, message: 'Password must be at least 8 characters long' }
+            ],
+            placeholder: "Password",
+            xs: 24,
+            sm: 16,
+            md: 24,
+            lg: 24,
+            labelCol: 4,
+            wrapperCol: 16,
+            value: "",
+        },
+    ],
+    button: {
+        justify: "center",
+        buttons: [
+            { type: "default", name: "Reset", fun: "reset" },
+            { type: "primary", name: "Login", fun: "submit" },
+        ]
+    }
+
 }
