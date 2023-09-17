@@ -7,7 +7,7 @@ export const formdata = {
         {
             type: "text",
             label: "First Name",
-            name: "firstName",
+            name: "proposerFirstName",
             rules: [{ required: true, message: 'Please enter first name' }],
             placeholder: "First Name",
             xs: 24,
@@ -31,7 +31,7 @@ export const formdata = {
         {
             type: "text",
             label: "Last Name",
-            name: "lasstName",
+            name: "proposerLastName",
             rules: [{ required: true, message: 'Please enter last name' }],
             placeholder: "Last Name",
             xs: 24,
@@ -107,6 +107,7 @@ export const formdata = {
             name: "instituteName",
             rules: [
                 { required: true, message: 'Please enter institute name' },
+                { min: 10, message: 'Institute name must be at least 10 characters long' }
             ],
             placeholder: "Institute Name",
             xs: 24,
@@ -118,7 +119,7 @@ export const formdata = {
         {
             type: "text",
             label: "Country",
-            name: "country",
+            name: "addressCountry",
             rules: [
                 { required: true, message: 'Please enter country' },
             ],
@@ -132,7 +133,7 @@ export const formdata = {
         {
             type: "text",
             label: "State",
-            name: "state",
+            name: "addressState",
             rules: [
                 { required: true, message: 'Please enter state' },
             ],
@@ -146,7 +147,7 @@ export const formdata = {
         {
             type: "text",
             label: "City",
-            name: "city",
+            name: "addressCity",
             rules: [
                 { required: true, message: 'Please enter city' },
             ],
@@ -160,7 +161,7 @@ export const formdata = {
         {
             type: "text",
             label: "Zip Code",
-            name: "zipCode",
+            name: "addressZipCode",
             rules: [
                 { required: true, message: 'Please enter zip code' },
             ],

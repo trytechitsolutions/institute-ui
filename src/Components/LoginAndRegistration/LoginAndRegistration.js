@@ -4,14 +4,23 @@ import img from "../../images/image.jpg"
 import InputFields from '../ReusableComponents/InputFields/InputFields';
 import { formdata } from "./LoginAndRegistrationModal";
 import { onChangeValueBind, preparePayLoad } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import {apiRequest} from '../../Service/CommonService';
+import * as environment from "../../enironment/environment";
 
 import './LoginAndRegistration.css';
 
 const LoginAndRegistration = () => {
 
-  function submitFormData() {
+  async function submitFormData() {
     const paylod = preparePayLoad(formdata.fieldsArray);
-    console.log(paylod)
+
+    const resp = await apiRequest(environment.baseUrl + "institute/register", 'post', paylod,);
+    if (resp.status === 200) {
+      console.log(resp)
+    }
+    else {
+      console.log(resp)
+    }
   }
 
   function onChange(data) {
