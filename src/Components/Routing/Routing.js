@@ -1,17 +1,22 @@
-import React from 'react';
+import React,{lazy} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LoginAndRegistration from "../LoginAndRegistration/LoginAndRegistration";
-import Home from "../Home/Home";
-import * as environment from "../../enironment/environment";
+import { getLoginData, isLogedIn } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../Redux/Actions/LoginAction';
+const LoginAndRegistration = lazy(() => import("../LoginAndRegistration/LoginAndRegistration"));
+const Home = lazy(() => import("../Home/Home"));
+
+// import LoginAndRegistration from '../LoginAndRegistration/LoginAndRegistration';
+// import Home from '../Home/Home';
 
 // Custom PrivateRoute component
-const PrivateRoute = ({ element: Element }) => {
-    const isLoggedIn = environment.getToken('token');
-    if (!isLoggedIn) {
+const PrivateRoute = (props) => {
+    const dispatch = useDispatch();
+    if (!isLogedIn()) {
         return <Navigate to="/login" />;
     }
-
-    return <Element.type />;
+    dispatch(loginSuccess(getLoginData()));
+    return <props.element.type />
 };
 
 function Routing() {

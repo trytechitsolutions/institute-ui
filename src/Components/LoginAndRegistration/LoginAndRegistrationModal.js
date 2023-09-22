@@ -14,8 +14,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -28,8 +28,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -42,8 +42,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -59,8 +59,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -76,8 +76,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -94,8 +94,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -111,8 +111,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -128,8 +128,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -143,8 +143,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
             options: [
                 { id: "School", value: "School" },
@@ -166,8 +166,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -183,8 +183,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -200,8 +200,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         {
@@ -217,8 +217,8 @@ export const regForm = {
             sm: 16,
             md: 12,
             lg: 12,
-            labelCol: 0,
-            wrapperCol: 0,
+            labelCol: "",
+            wrapperCol: "",
             value: "",
         },
         // {
@@ -232,8 +232,8 @@ export const regForm = {
         //     sm: 16,
         //     md: 12,
         //       lg: 12,
-        // labelCol: 0,
-        // wrapperCol: 0,
+        // labelCol: "",
+        // wrapperCol: "",
         //     value: "",
         // },
         // {
@@ -248,8 +248,8 @@ export const regForm = {
         //     sm: 16,
         //     md: 12,
         //       lg: 12,
-        // labelCol: 0,
-        // wrapperCol: 0,
+        // labelCol: "",
+        // wrapperCol: "",
         //     value: "",
         //     rows: 4,
         // },
@@ -264,8 +264,8 @@ export const regForm = {
         //     sm: 16,
         //     md: 12,
         //       lg: 12,
-        // labelCol: 0,
-        // wrapperCol: 0,
+        // labelCol: "",
+        // wrapperCol: "",
         //     value: "",
         // },
         // {
@@ -278,10 +278,10 @@ export const regForm = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //       lg: 12,
-        // labelCol: 0,
-        // wrapperCol: 0,
-        //     value: "",
+        //     lg: 12,
+        //     labelCol: "",
+        //     wrapperCol: "",
+        //     value: "2",
         //     options: [
         //         { id: "1", value: "option1" },
         //         { id: "2", value: "option2" }
@@ -298,10 +298,10 @@ export const regForm = {
         //     xs: 24,
         //     sm: 16,
         //     md: 12,
-        //       lg: 12,
-        // labelCol: 0,
-        // wrapperCol: 0,
-        //     value: "",
+        //     lg: 12,
+        //     labelCol: "",
+        //     wrapperCol: "",
+        //     value: "1",
         //     options: [
         //         { id: "1", value: "option1" },
         //         { id: "2", value: "option2" }
@@ -320,13 +320,13 @@ export const regForm = {
         //     sm: 16,
         //     md: 12,
         //       lg: 12,
-        // labelCol: 0,
-        // wrapperCol: 0,
+        // labelCol: "",
+        // wrapperCol: "",
         //     value: "",
         // }
 
     ],
-    button: {
+    buttonSecction: {
         justify: "end",
         buttons: [
             { type: "primary", name: "Register", fun: "submit" },
@@ -375,11 +375,11 @@ export const loginForm = {
             value: "",
         },
     ],
-    button: {
+    buttonSecction: {
         justify: "center",
         buttons: [
             { type: "default", name: "Reset", fun: "reset" },
-            { type: "primary", name: "Login", fun: "submit" },
+            { type: "primary", name: "Login", fun: "submit",},
         ]
     }
 

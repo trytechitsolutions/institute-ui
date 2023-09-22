@@ -1,20 +1,13 @@
-import SecureLS from "secure-ls";
 
-const ls = new SecureLS({ encodingType: 'aes' });
+export const BASE_URL = "http://localhost:8000/";
+export const GET="get";
+export const POST="post";
+export const SUCCESS= "success";
+export const ERROR="error";
+export const REGISTER_SUCCESS_MSG="Registion success please click on login...!";
 
-export const setToken = (key, value) => {
-    ls.set(key, value);
-}
-
-export const getToken = (key) => {
-    return ls.get(key)
-}
-
-export const removeToken = (key) => {
-    ls.remove(key)
-}
-
-export const baseUrl = "http://localhost:8000/";
+export const LOGIN_URL="api/auth/signin";
+export const REGISTER_URL="api/institute/register";
 
 
 

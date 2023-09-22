@@ -1,16 +1,11 @@
 import axios from 'axios';
-import * as securedLocalStorage from "../enironment/environment";
+import { getToken } from '../Components/SecureStorage/SecureStorage';
+import { BASE_URL} from '../enironment/environment';
 
 // Function to make a generic API request
-export const apiRequest = async (url, method, data) => {
-    const config = {
-        method,
-        url,
-        data,
-    };
-    const token = securedLocalStorage.getToken("token");
+export const apiRequest = async (req) => {
+    const token = getToken('token');
     if (token) {
-        console.log("hii")
         const headers = {
             token,
             "Authorization": "1",
@@ -19,14 +14,14 @@ export const apiRequest = async (url, method, data) => {
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PUT,DELETE",
             "Access-Control-Allow-Credentials": true,
         }
-        config["headers"] = headers;
+        req["headers"] = headers;
     }
-
+    req.url = BASE_URL + req.url;
     try {
-        const response = await axios(config);
-        return response;
+        const response = await axios(req);
+        return response.data;
     } catch (error) {
-        return error;
+        throw error;
     }
 };
 

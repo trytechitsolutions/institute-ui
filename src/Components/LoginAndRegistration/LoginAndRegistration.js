@@ -1,77 +1,124 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Row, Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import img from "../../images/image.jpg"
+import React, { useEffect, useState, useRef } from 'react';
+import { Col, Row, Button, Card } from 'antd';
+import { useDispatch } from 'react-redux';
 import InputFields from '../ReusableComponents/InputFields/InputFields';
 import { regForm, loginForm } from "./LoginAndRegistrationModal";
-import { onChangeValueBind, preparePayLoad } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import { onChangeValueBind, preparePayLoad, getErrorMsg, upDateForm } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import { loginRequest } from '../../Redux/Actions/LoginAction';
+import { GetStoreData } from '../ReusableComponents/ReduxActions/FecthState';
+import { ERROR, LOGIN_URL, POST, REGISTER_SUCCESS_MSG, REGISTER_URL, SUCCESS } from '../../enironment/environment';
+import AlertMessage from '../ReusableComponents/AlertMessages/AlertMessages';
 import { apiRequest } from '../../Service/CommonService';
-import * as environment from "../../enironment/environment";
 
 import './LoginAndRegistration.css';
 
 const LoginAndRegistration = () => {
-  const navigate = useNavigate();
+  const ChildRef = useRef();
+  const dispatch = useDispatch()
+  const loginReducer = GetStoreData('LoginReducer');
   const [page, setPage] = useState("Login");
   const [formData, setFormData] = useState(loginForm);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertData, setAlertData] = useState();
 
-  async function submitFormData() {
-    const paylod = preparePayLoad(formData.fieldsArray);
-    let url = environment.baseUrl + "auth/signin";
-    if (page !== "Login") {
-      url = environment.baseUrl + "institute/register"
-    }
-    const resp = await apiRequest(url, 'post', paylod,);
-    if (resp.status === 200) {
-      if (page === "Login") {
-        environment.setToken("token", resp.data.token);
-        navigate('/home');
-      } else {
-        setPage("Login")
+  function submitFormData() {
+    const payload = preparePayLoad(formData.fieldsArray);
+    if (page === "Login") {
+      const req = {
+        method: POST,
+        url: LOGIN_URL,
+        data: payload
       }
+      dispatch(loginRequest(req));
+    } else {
+      register(payload);
     }
-    else {
-      console.log(resp)
+  }
+
+  async function register(payload) {
+    formData.buttonSecction.buttons[0]['loading'] = true;
+    setFormData({ ...formData })
+    try {
+      const req = {
+        method: POST,
+        url: REGISTER_URL,
+        data: payload
+      }
+      await apiRequest(req);
+      formData.buttonSecction.buttons[0]['loading'] = false;
+      setFormData({ ...formData })
+      showAlertMsg(SUCCESS, REGISTER_SUCCESS_MSG, closeAlert);
+    } catch (err) {
+      formData.buttonSecction.buttons[0]['loading'] = false;
+      setFormData({ ...formData })
+      showAlertMsg(ERROR, getErrorMsg(err), closeAlert);
     }
+
   }
 
   function onChange(data) {
     onChangeValueBind(formData, data);
   }
 
+  function showAlertMsg(type, message, closeAlert) {
+    let data = {
+      type,
+      message,
+      closeAlert: closeAlert
+    }
+    setAlertData(data);
+    setShowAlert(true)
+  }
+
+  function closeAlert() {
+    setShowAlert(false);
+  }
   useEffect(() => {
     setFormData(loginForm);
     if (page !== "Login") {
       setFormData(regForm);
     }
-  }, [page])
+    upDateForm(true, page !== "Login" ? regForm : loginForm,)
+    ChildRef.current.reSetForm();
+    setShowAlert(false);
+  }, [page]);
+
+
+
+  useEffect(() => {
+    if (loginReducer.loginData && loginReducer.loginData.exp) {
+      window.location.href = '/home';
+    }
+    if (loginReducer.error) {
+      showAlertMsg(ERROR, loginReducer.error, closeAlert);
+    }
+  }, [loginReducer]);
+
 
   return (
-    <div className="split-container">
-      <div className="left-panel">
-        <img src={img} alt="cover" className="img" />
-      </div>
-      <div className="right-panel">
-        <Row>
-          <Col xs={2} sm={2} md={2} lg={1}></Col>
-          <Col xs={22} sm={22} md={22} lg={23}>
-            <Row justify="center">
-              <Col span={16}>
-                <h4 className="card-title">Institute Management {page}</h4>
-              </Col>
-              <InputFields modaldata={formData} onChange={onChange} submitFormData={submitFormData} />
-            </Row>
-            <Row justify="center">
-              <Col span={6}>
-                Clik here<Button type="link" onClick={() => setPage(page === "Login" ? "Register" : "Login")} >
-                  {page === "Login" ? "Register" : "Login"}
-                </Button>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </div>
-    </div>
+    <Row justify="center">
+      <Col xs={24} sm={16} md={12} lg={13} style={{ marginTop: "70px" }}>
+        <Card>
+          <Row justify="center" style={{ marginTop: "-50px" }}>
+            <Col xs={24} sm={16} md={12} lg={16} >
+              <h4 className="form-title">Institute Management {page}</h4>
+            </Col>
+            <InputFields ref={ChildRef} modaldata={formData} onChange={onChange} submitFormData={submitFormData} />
+          </Row>
+          <Row justify="center">
+            <Col span={8}>
+              Clik here<Button type="link" onClick={() => setPage(page === "Login" ? "Register" : "Login")} >
+                {page === "Login" ? "Register" : "Login"}
+              </Button>
+            </Col>
+          </Row>
+          {
+            showAlert &&
+            <AlertMessage data={alertData} />
+          }
+        </Card>
+      </Col>
+    </Row>
   );
 
 }
