@@ -1,13 +1,13 @@
 
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import { Form, Input, InputNumber, DatePicker, Checkbox, Upload, Button, Select, Radio, Col, Row } from 'antd';
 import { UserOutlined, LockOutlined, PhoneOutlined, UploadOutlined } from '@ant-design/icons';
 import './InputFields.css';
 
 
-const InputFields = (props) => {
+const InputFields = forwardRef((props, ref) => {
+    const { modaldata, onChange, submitFormData,} = props;
     const [form] = Form.useForm();
-    const { modaldata, onChange, submitFormData } = props;
 
     const handleInputChange = (name, type, value) => {
         let obj = { name, type, value }
@@ -26,21 +26,35 @@ const InputFields = (props) => {
         if (name.toLowerCase() === "submit") {
             validateForm();
         } else if (name.toLowerCase() === "reset") {
-            form.resetFields()
+            reSetForm();
         } else {
             console.log("cancel")
         }
     }
 
+    function reSetForm() {
+        form.resetFields();
+    }
+
+    useImperativeHandle(ref, () => ({
+        reSetForm,
+    }));
+
+    //Bind Values
+    const initialValues = [];
+    modaldata.fieldsArray.forEach((field) => {
+        initialValues.push({ name: field.name, value: field.value });
+    });
+
     return (
         <div>
             {modaldata.fieldsArray &&
-                <Form form={form} layout={modaldata.formlayout !== undefined ? modaldata.formlayout : "vertical"} >
+                <Form form={form} layout={modaldata.formlayout !== undefined ? modaldata.formlayout : "vertical"} fields={initialValues}>
                     <Row style={{ marginLeft: "10px" }}>
                         {modaldata.fieldsArray.map((ele, i) =>
                             <Col xs={ele.xs} sm={ele.sm} md={ele.md} lg={ele.lg} key={i} >
                                 {ele.type === "text" && (
-                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }} >
+                                    <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: "" }} wrapperCol={{ span: "" }} >
                                         <Input placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value, event.target.type)} />
                                     </Form.Item>
                                 )}
@@ -128,16 +142,16 @@ const InputFields = (props) => {
                 </Form>
             }
             <br />
-            {modaldata.button && modaldata.button.buttons && modaldata.button.buttons.length > 0 &&
-                <Row justify={modaldata.button.justify}>
-                    {modaldata.button.buttons.map((ele, i) =>
+            {modaldata.buttonSecction && modaldata.buttonSecction.buttons && modaldata.buttonSecction.buttons.length > 0 &&
+                <Row justify={modaldata.buttonSecction.justify}>
+                    {modaldata.buttonSecction.buttons.map((ele, i) =>
                         <Col className="btn" key={i}>
-                            <Button type={ele.type} onClick={() => handlButton(ele.fun)}>{ele.name}</Button>
+                            <Button type={ele.type} loading={ele.loading} onClick={() => handlButton(ele.fun)}>{ele.name}</Button>
                         </Col>
                     )}
                 </Row>
             }
         </div >
     )
-}
+});
 export default InputFields;
