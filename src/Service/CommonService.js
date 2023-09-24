@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { getToken } from '../Components/SecureStorage/SecureStorage';
-import { BASE_URL} from '../enironment/environment';
+import { BASE_URL } from '../enironment/environment';
 
 // Function to make a generic API request
-export const apiRequest = async (req) => {
+const apiRequest = async (req) => {
     const token = getToken('token');
     if (token) {
         const headers = {
@@ -24,5 +24,6 @@ export const apiRequest = async (req) => {
         throw error;
     }
 };
+export default apiRequest;
 
 

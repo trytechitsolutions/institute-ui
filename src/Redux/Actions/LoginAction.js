@@ -1,17 +1,25 @@
 import { LoginFailed, LoginRequest, LoginSucess } from "../Constants/LoginConstants";
 
 
-export const loginRequest = (req) => ({
+const loginRequest = (req) => ({
     type: LoginRequest,
     req,
 });
 
-export const loginSuccess = (data) => ({
+const loginSuccess = (data) => ({
     type: LoginSucess,
     data,
 });
 
-export const loginFail = (error) => ({
+const loginFail = (error) => ({
     type: LoginFailed,
     data: error,
 });
+
+
+const AllActions = {
+    loginRequest,
+    loginSuccess,
+    loginFail
+}
+export default AllActions;
