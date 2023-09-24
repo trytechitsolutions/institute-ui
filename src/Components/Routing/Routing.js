@@ -6,9 +6,6 @@ import { loginSuccess } from '../../Redux/Actions/LoginAction';
 const LoginAndRegistration = lazy(() => import("../LoginAndRegistration/LoginAndRegistration"));
 const Home = lazy(() => import("../Home/Home"));
 
-// import LoginAndRegistration from '../LoginAndRegistration/LoginAndRegistration';
-// import Home from '../Home/Home';
-
 // Custom PrivateRoute component
 const PrivateRoute = (props) => {
     const dispatch = useDispatch();
