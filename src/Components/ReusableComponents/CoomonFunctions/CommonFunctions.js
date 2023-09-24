@@ -1,14 +1,14 @@
 import jwt_decode from "jwt-decode";
 import { getToken } from "../../SecureStorage/SecureStorage";
 
-const validatePhoneNumber = (_, value) => {
+export const validatePhoneNumber = (_, value) => {
     if (value && !/^\d{10}$/.test(value)) {
         return Promise.reject('Please enter a valid 10-digit phone number');
     }
     return Promise.resolve();
 };
 
-const validateConfirmPassword = (_, value, arr) => {
+export const validateConfirmPassword = (_, value, arr) => {
     let pwd = '';
     const pwdObj = arr.find(ele => ele.name === "password");
     if (pwdObj) {
@@ -20,12 +20,12 @@ const validateConfirmPassword = (_, value, arr) => {
     return Promise.resolve();
 };
 
-const dateFormat = (val) => {
+export const dateFormat = (val) => {
     const date = new Date(val);
     return date.toLocaleDateString();
-};
+}
 
-const onChangeValueBind = (formdata, data) => {
+export const onChangeValueBind = (formdata, data) => {
     const matchingElement = formdata.fieldsArray.find(ele => ele.name === data.name);
     if (matchingElement) {
         matchingElement.value = data.value;
@@ -33,10 +33,10 @@ const onChangeValueBind = (formdata, data) => {
     if (matchingElement.type === "date") {
         matchingElement.value = dateFormat(data.value);
     }
-};
+}
 
 
-const preparePayLoad = (arr) => {
+export const preparePayLoad = (arr) => {
     let obj = {};
     arr.forEach(ele => {
         obj[ele.name] = ele.value;
@@ -57,52 +57,39 @@ const preparePayLoad = (arr) => {
         return formData;
     }
     return obj;
-};
+}
 
-const getErrorMsg = (res) => {
+export const getErrorMsg = (res) => {
     let msg = "Server Error...!"
-    if (typeof res.response.data.error === "string") {
+    if (typeof  res.response.data.error==="string") {
         msg = res.response.data.error;
-    } else {
+    }else{
         msg = res.response.data.error.errors[0].message;
     }
-
+    
     return msg;
-};
+}
 
-const getLoginData = () => {
+export const getLoginData = () => {
     const token = getToken("token");
     if (token) {
         return jwt_decode(token);
     }
     return null;
-};
+}
 
-const isLogedIn = () => {
+export const isLogedIn = () => {
     const loginData = getLoginData();
     const currentTimestamp = Math.floor(Date.now() / 1000);
     if (loginData && (loginData.exp > currentTimestamp)) {
         return true;
     }
     return false;
-};
+}
 
-const upDateForm = (reset, formdata, obj) => {
+export const upDateForm = (reset, formdata, obj) => {
     formdata.fieldsArray.forEach(ele => {
         ele.value = reset === true ? "" : obj[ele.name];
     });
-};
-const AllFunctions = {
-    validatePhoneNumber,
-    validateConfirmPassword,
-    dateFormat,
-    onChangeValueBind,
-    preparePayLoad,
-    getErrorMsg,
-    getLoginData,
-    isLogedIn,
-    upDateForm,
-};
-
-export default AllFunctions;
+}
 

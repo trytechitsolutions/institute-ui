@@ -1,5 +1,4 @@
-import validatePhoneNumber from "../ReusableComponents/CoomonFunctions/CommonFunctions";
-import validateConfirmPassword from "../ReusableComponents/CoomonFunctions/CommonFunctions";
+import { validatePhoneNumber, validateConfirmPassword } from "../ReusableComponents/CoomonFunctions/CommonFunctions";
 
 
 export const regForm = {
@@ -380,7 +379,7 @@ export const loginForm = {
         justify: "center",
         buttons: [
             { type: "default", name: "Reset", fun: "reset" },
-            { type: "primary", name: "Login", fun: "submit", },
+            { type: "primary", name: "Login", fun: "submit",},
         ]
     }
 
