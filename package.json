@@ -21,6 +21,7 @@
     "redux": "^4.2.1",
     "redux-saga": "^1.2.3",
     "secure-ls": "^1.2.6",
+    "source-map-explorer": "^2.5.3",
     "terser-webpack-plugin": "^5.3.9",
     "web-vitals": "^3.4.0"
   },

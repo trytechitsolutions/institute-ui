@@ -3,12 +3,15 @@ import { Col, Row, Button, Card } from 'antd';
 import { useDispatch } from 'react-redux';
 import InputFields from '../ReusableComponents/InputFields/InputFields';
 import { regForm, loginForm } from "./LoginAndRegistrationModal";
-import { onChangeValueBind, preparePayLoad, getErrorMsg, upDateForm } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
-import { loginRequest } from '../../Redux/Actions/LoginAction';
+import onChangeValueBind from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import preparePayLoad from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import getErrorMsg from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import upDateForm from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import loginRequest from '../../Redux/Actions/LoginAction';
 import { GetStoreData } from '../ReusableComponents/ReduxActions/FecthState';
 import { ERROR, LOGIN_URL, POST, REGISTER_SUCCESS_MSG, REGISTER_URL, SUCCESS } from '../../enironment/environment';
 import AlertMessage from '../ReusableComponents/AlertMessages/AlertMessages';
-import { apiRequest } from '../../Service/CommonService';
+import apiRequest from '../../Service/CommonService';
 
 import './LoginAndRegistration.css';
 

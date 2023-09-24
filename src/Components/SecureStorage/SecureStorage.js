@@ -13,3 +13,4 @@ export const getToken = (key) => {
 export const removeToken = (key) => {
     ls.remove(key)
 }
+
