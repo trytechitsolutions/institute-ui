@@ -6,12 +6,12 @@ import './InputFields.css';
 
 
 const InputFields = forwardRef((props, ref) => {
-    const { modaldata, onChange, submitFormData,} = props;
+    const { modaldata, onChange, submitFormData,index} = props;
     const [form] = Form.useForm();
 
     const handleInputChange = (name, type, value) => {
         let obj = { name, type, value }
-        onChange(obj);
+        onChange(obj,index);
     };
 
     const validateForm = () => {
@@ -75,7 +75,7 @@ const InputFields = forwardRef((props, ref) => {
                                 )}
                                 {ele.type === "number" && (
                                     <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
-                                        <InputNumber style={{ width: '100%' }} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)} />
+                                        <InputNumber style={{ width: '100%' }} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "phonenumber" && (

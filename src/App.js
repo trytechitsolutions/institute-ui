@@ -1,12 +1,9 @@
 import './App.css';
-import Routing from './Components/Routing/Routing';
+import SideMenu from './Components/Routing/SideMenu';
 
 function App() {
   return (
-    <div className="App" >
-      <Routing />
-    </div>
+      <SideMenu />
   );
 }
-
 export default App;

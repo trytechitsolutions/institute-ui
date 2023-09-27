@@ -93,3 +93,9 @@ export const upDateForm = (reset, formdata, obj) => {
     });
 }
 
+export const onChangePreference = (arr, data,i) => {
+    const matchingElement = arr[i].find(ele => ele.name === data.name);
+    if (matchingElement) {
+        matchingElement.value = data.value;
+    }
+}
