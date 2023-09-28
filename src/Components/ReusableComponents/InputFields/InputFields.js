@@ -141,7 +141,7 @@ const InputFields = forwardRef((props, ref) => {
                     </Row>
                 </Form>
             }
-            <br />
+           
             {modaldata.buttonSecction && modaldata.buttonSecction.buttons && modaldata.buttonSecction.buttons.length > 0 &&
                 <Row justify={modaldata.buttonSecction.justify}>
                     {modaldata.buttonSecction.buttons.map((ele, i) =>
