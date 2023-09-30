@@ -3,10 +3,11 @@ import { getToken } from "../../SecureStorage/SecureStorage";
 
 export const validatePhoneNumber = (_, value) => {
     if (value && !/^\d{10}$/.test(value)) {
-        return Promise.reject('Please enter a valid 10-digit phone number');
+        return Promise.reject(new Error('Please enter a valid 10-digit phone number'));
     }
     return Promise.resolve();
 };
+
 
 export const validateConfirmPassword = (_, value, arr) => {
     let pwd = '';
@@ -15,7 +16,7 @@ export const validateConfirmPassword = (_, value, arr) => {
         pwd = pwdObj.value;
     }
     if (value && pwd && value !== pwd) {
-        return Promise.reject('Passwords do not match');
+        return Promise.reject(new Error('Passwords do not match'));
     }
     return Promise.resolve();
 };
@@ -60,14 +61,13 @@ export const preparePayLoad = (arr) => {
 }
 
 export const getErrorMsg = (res) => {
-    let msg = "Server Error...!"
-    if (typeof  res.response.data.error==="string") {
-        msg = res.response.data.error;
-    }else{
-        msg = res.response.data.error.errors[0].message;
+    if (typeof res.response.data.error == "string") {
+        return res.response.data.error;
+    } else {
+        const msg = res.response.data.error.errors[0].message;
+        return msg || "Server Error";
     }
-    
-    return msg;
+
 }
 
 export const getLoginData = () => {
@@ -81,10 +81,7 @@ export const getLoginData = () => {
 export const isLogedIn = () => {
     const loginData = getLoginData();
     const currentTimestamp = Math.floor(Date.now() / 1000);
-    if (loginData && (loginData.exp > currentTimestamp)) {
-        return true;
-    }
-    return false;
+    return loginData && (loginData.exp > currentTimestamp);
 }
 
 export const upDateForm = (reset, formdata, obj) => {
@@ -93,9 +90,3 @@ export const upDateForm = (reset, formdata, obj) => {
     });
 }
 
-export const onChangePreference = (arr, data,i) => {
-    const matchingElement = arr[i].find(ele => ele.name === data.name);
-    if (matchingElement) {
-        matchingElement.value = data.value;
-    }
-}

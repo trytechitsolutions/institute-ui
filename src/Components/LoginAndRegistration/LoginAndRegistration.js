@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import InputFields from '../ReusableComponents/InputFields/InputFields';
 import { regForm, loginForm } from "./LoginAndRegistrationModal";
 import { onChangeValueBind, preparePayLoad, getErrorMsg, upDateForm } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
-import { loginRequest } from '../../Redux/Actions/LoginAction';
+import { loginRequest } from '../../Redux/Reducers/LoginReducer';
 import { GetStoreData } from '../ReusableComponents/ReduxActions/FecthState';
 import { ERROR, LOGIN_URL, POST, REGISTER_SUCCESS_MSG, REGISTER_URL, SUCCESS } from '../../enironment/environment';
 import AlertMessage from '../ReusableComponents/AlertMessages/AlertMessages';
@@ -14,7 +14,7 @@ import './LoginAndRegistration.css';
 
 const LoginAndRegistration = () => {
   const ChildRef = useRef();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const loginReducer = GetStoreData('LoginReducer');
   const [page, setPage] = useState("Login");
   const [formData, setFormData] = useState(loginForm);
@@ -86,7 +86,7 @@ const LoginAndRegistration = () => {
 
 
   useEffect(() => {
-    if (loginReducer.loginData && loginReducer.loginData.exp) {
+    if (loginReducer.loginData?.exp) {
       window.location.href = '/home';
     }
     if (loginReducer.error) {

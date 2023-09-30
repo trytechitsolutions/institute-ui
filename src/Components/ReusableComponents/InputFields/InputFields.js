@@ -1,22 +1,25 @@
 
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState, useCallback } from 'react';
 import { Form, Input, InputNumber, DatePicker, Checkbox, Upload, Button, Select, Radio, Col, Row } from 'antd';
 import { UserOutlined, LockOutlined, PhoneOutlined, UploadOutlined } from '@ant-design/icons';
 import './InputFields.css';
 
 
 const InputFields = forwardRef((props, ref) => {
-    const { modaldata, onChange, submitFormData,index} = props;
+    const { modaldata, onChange, submitFormData, index } = props;
+    const [initialValues, setInitialValues] = useState();
     const [form] = Form.useForm();
 
     const handleInputChange = (name, type, value) => {
         let obj = { name, type, value }
-        onChange(obj,index);
+        onChange(obj, index);
     };
 
     const validateForm = () => {
         form.validateFields().then(res => {
-            submitFormData(res)
+            if (submitFormData) {
+                submitFormData(res);
+            }
         }).catch((err) => {
             console.log(err)
         });
@@ -36,15 +39,24 @@ const InputFields = forwardRef((props, ref) => {
         form.resetFields();
     }
 
+    const bindValues = useCallback(() => {
+        const arr = [];
+        modaldata.fieldsArray.forEach((field) => {
+            arr.push({ name: field.name, value: field.value });
+        });
+        setInitialValues(arr);
+    }, [modaldata]);
+
     useImperativeHandle(ref, () => ({
         reSetForm,
+        handlButton,
+        bindValues,
     }));
 
     //Bind Values
-    const initialValues = [];
-    modaldata.fieldsArray.forEach((field) => {
-        initialValues.push({ name: field.name, value: field.value });
-    });
+    useEffect(() => {
+        bindValues();
+    }, [bindValues])
 
     return (
         <div>
@@ -55,12 +67,12 @@ const InputFields = forwardRef((props, ref) => {
                             <Col xs={ele.xs} sm={ele.sm} md={ele.md} lg={ele.lg} key={i} >
                                 {ele.type === "text" && (
                                     <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: "" }} wrapperCol={{ span: "" }} >
-                                        <Input placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value, event.target.type)} />
+                                        <Input placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "text-area" && (
                                     <Form.Item label={ele.label} name={ele.name} rules={ele.rules} labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}>
-                                        <Input.TextArea rows={ele.rows} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value, event.target.type)} />
+                                        <Input.TextArea rows={ele.rows} placeholder={ele.placeholder} onChange={(event) => handleInputChange(ele.name, ele.type, event.target.value)} />
                                     </Form.Item>
                                 )}
                                 {ele.type === "email" && (
@@ -119,7 +131,7 @@ const InputFields = forwardRef((props, ref) => {
                                 {ele.type === "file" && (
                                     <Form.Item label={""} name={ele.name} rules={ele.rules} valuePropName="fileList" labelCol={{ span: ele.labelCol }} wrapperCol={{ span: ele.wrapperCol }}
                                         getValueFromEvent={(e) => {
-                                            let fileList = e && e.fileList ? e.fileList : [];
+                                            let fileList = e.fileList ? e.fileList : [];
                                             if (!Array.isArray(fileList) && typeof fileList === "object" && fileList.uid) {
                                                 fileList = [fileList];
                                             }
@@ -141,8 +153,8 @@ const InputFields = forwardRef((props, ref) => {
                     </Row>
                 </Form>
             }
-           
-            {modaldata.buttonSecction && modaldata.buttonSecction.buttons && modaldata.buttonSecction.buttons.length > 0 &&
+
+            {modaldata?.buttonSecction?.buttons?.length > 0 &&
                 <Row justify={modaldata.buttonSecction.justify}>
                     {modaldata.buttonSecction.buttons.map((ele, i) =>
                         <Col className="btn" key={i}>
