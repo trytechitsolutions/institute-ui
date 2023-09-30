@@ -1,23 +1,29 @@
-import { LoginFailed, LoginRequest, LoginSucess } from "../Constants/LoginConstants";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const initialState = {
+const initialState = {
     loginData: {},
     isLoading: false,
     error: null,
-}
+};
 
+const loginSlice = createSlice({
+    name: "login",
+    initialState,
+    reducers: {
+        loginRequest: (state) => {
+            state.isLoading = true;
+        },
+        loginSuccess: (state, action) => {
+            state.isLoading = false;
+            state.loginData = action.payload;
+            state.error = null;
+        },
+        loginFail: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+    },
+});
 
-export const LoginReducer = (state = initialState, action = {}) => {
-    const { type, data } = action;
-    switch (type) {
-        case LoginRequest:
-            return { ...state, isLoading: true };
-        case LoginSucess:
-            return { ...state, loginData: data, isLoading: false, error: null };
-        case LoginFailed:
-            return { ...state, isLoading: false, error: data };
-        default:
-            return state;
-    }
-}
-export default LoginReducer;
+export const { loginRequest, loginSuccess, loginFail } = loginSlice.actions;
+export default loginSlice.reducer;
