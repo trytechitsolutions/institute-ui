@@ -1,4 +1,4 @@
-import { validatePhoneNumber, validateConfirmPassword } from "../ReusableComponents/CoomonFunctions/CommonFunctions";
+import { validatePhoneNumber, validateConfirmPassword } from "../ReusableComponents/CoomonFunctions/Index";
 
 
 export const regForm = {

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { HomeOutlined, UserOutlined, UsergroupAddOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Layout, Menu,Card } from 'antd';
-import Routing from './Routing';
-import { isLogedIn } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
+import Routing from '../Routing/Index';
+import { isLogedIn } from '../Components/ReusableComponents/CoomonFunctions/Index';
 
 const { Sider, Content } = Layout;
 

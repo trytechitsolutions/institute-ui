@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import AddPreference from "../../ReusableComponents/AddPreference/AddPreference";
-import { preparePayLoad, upDateForm } from "../../ReusableComponents/CoomonFunctions/CommonFunctions";
-import { GetStoreData } from "../../ReusableComponents/ReduxActions/FecthState";
+import AddPreference from "../../ReusableComponents/AddPreference/Index";
+import { preparePayLoad, upDateForm } from "../../ReusableComponents/CoomonFunctions/Index";
+import { GetStoreData } from "../../ReusableComponents/ReduxActions/Index";
 import { useDispatch } from "react-redux";
-import { addClasses } from "../../../Redux/Reducers/ClassReducer";
-import { setActiveReducer } from "../../../Redux/Reducers/ActiveReducer";
+import { addClasses } from "../../../Redux/Reducers/ClassReducer/Index";
+import { setActiveReducer } from "../../../Redux/Reducers/ActiveReducer/Index";
 
 function Classes() {
     const data = GetStoreData('ClassReducer');

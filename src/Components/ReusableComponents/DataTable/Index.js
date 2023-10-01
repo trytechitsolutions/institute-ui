@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Input, Row, Col } from 'antd';
 import { CSVLink } from 'react-csv';
 import { EditOutlined, DeleteOutlined, SearchOutlined, DownloadOutlined } from '@ant-design/icons';
-import './DataTable.css';
+import './Index.css';
 
 const DataTable = (props) => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);

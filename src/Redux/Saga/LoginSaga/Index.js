@@ -1,8 +1,8 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { apiRequest } from '../../../Service/CommonService';
-import { loginFail, loginRequest, loginSuccess } from '../../Reducers/LoginReducer';
-import { getLoginData, getErrorMsg, } from '../../../Components/ReusableComponents/CoomonFunctions/CommonFunctions';
-import { setToken } from '../../../Components/SecureStorage/SecureStorage';
+import { apiRequest } from '../../../Service/Index';
+import { loginFail, loginRequest, loginSuccess } from '../../Reducers/LoginReducer/Index';
+import { getLoginData, getErrorMsg, } from '../../../Components/ReusableComponents/CoomonFunctions/Index';
+import { setToken } from '../../../Components/SecureStorage/Index';
 
 function* lginCall(action) {
   try {

@@ -1,12 +1,12 @@
 import React, { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { isLogedIn } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
-import PageNotFound from '../PageNotFound/PageNotFound';
+import { isLogedIn } from '../Components/ReusableComponents/CoomonFunctions/Index';
+import PageNotFound from '../Components/PageNotFound/Index';
 
-const LoginAndRegistration = lazy(() => import("../LoginAndRegistration/LoginAndRegistration"));
-const Home = lazy(() => import("../Home/Home"));
-const Classes = lazy(() => import("../Preference/Classes/Classes"));
-const Qualifications = lazy(() => import("../Preference/Qualifications/Qualifications"));
+const LoginAndRegistration = lazy(() => import("../Components/LoginAndRegistration/Index"));
+const Home = lazy(() => import("../Components/Home/Index"));
+const Classes = lazy(() => import("../Components/Preference/Classes/Index"));
+const Qualifications = lazy(() => import("../Components/Preference/Qualifications/Index"));
 
 
 // Custom PrivateRoute component
