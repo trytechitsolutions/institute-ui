@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Col, Row, Button, Card } from 'antd';
 import { useDispatch } from 'react-redux';
-import InputFields from '../ReusableComponents/InputFields/InputFields';
-import { regForm, loginForm } from "./LoginAndRegistrationModal";
-import { onChangeValueBind, preparePayLoad, getErrorMsg, upDateForm } from '../ReusableComponents/CoomonFunctions/CommonFunctions';
-import { loginRequest } from '../../Redux/Reducers/LoginReducer';
-import { GetStoreData } from '../ReusableComponents/ReduxActions/FecthState';
-import { ERROR, LOGIN_URL, POST, REGISTER_SUCCESS_MSG, REGISTER_URL, SUCCESS } from '../../enironment/environment';
-import AlertMessage from '../ReusableComponents/AlertMessages/AlertMessages';
-import { apiRequest } from '../../Service/CommonService';
+import InputFields from '../ReusableComponents/InputFields/Index';
+import { regForm, loginForm } from "./Model";
+import { onChangeValueBind, preparePayLoad, getErrorMsg, upDateForm } from '../ReusableComponents/CoomonFunctions/Index';
+import { loginRequest } from '../../Redux/Reducers/LoginReducer/Index';
+import { GetStoreData } from '../ReusableComponents/ReduxActions/Index';
+import { ERROR, LOGIN_URL, POST, REGISTER_SUCCESS_MSG, REGISTER_URL, SUCCESS } from '../../Enironment/Index';
+import AlertMessage from '../ReusableComponents/AlertMessages/Index';
+import { apiRequest } from '../../Service/Index';
 
-import './LoginAndRegistration.css';
+import './Index.css';
 
 const LoginAndRegistration = () => {
   const ChildRef = useRef();

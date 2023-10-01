@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { GetStoreData } from './Components/ReusableComponents/ReduxActions/FecthState';
-import SideMenu from './Components/Routing/SideMenu';
+import { GetStoreData } from './Components/ReusableComponents/ReduxActions/Index';
+import SideMenu from './SideMenu/Index';
 import './App.css';
 
 function App() {

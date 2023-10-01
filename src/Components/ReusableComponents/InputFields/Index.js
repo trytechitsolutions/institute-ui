@@ -2,7 +2,7 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState, useCallback } from 'react';
 import { Form, Input, InputNumber, DatePicker, Checkbox, Upload, Button, Select, Radio, Col, Row } from 'antd';
 import { UserOutlined, LockOutlined, PhoneOutlined, UploadOutlined } from '@ant-design/icons';
-import './InputFields.css';
+import './Index.css';
 
 
 const InputFields = forwardRef((props, ref) => {

@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-import { getToken } from "../../SecureStorage/SecureStorage";
+import { getToken } from "../../SecureStorage/Index";
 
 export const validatePhoneNumber = (_, value) => {
     if (value && !/^\d{10}$/.test(value)) {

@@ -1,7 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { apiRequest } from '../../../Service/CommonService';
-import { classGetFail, classGetRequest, classGetSuccess, classSaveFail, classSaveSuccess, } from '../../Reducers/ClassReducer';
-import { getErrorMsg, } from '../../../Components/ReusableComponents/CoomonFunctions/CommonFunctions';
+import { apiRequest } from '../../../Service/Index';
+import { classGetFail, classGetRequest, classGetSuccess, classSaveFail, classSaveSuccess, } from '../../Reducers/ClassReducer/Index';
+import { getErrorMsg, } from '../../../Components/ReusableComponents/CoomonFunctions/Index';
 
 function* classSave(action) {
     try {

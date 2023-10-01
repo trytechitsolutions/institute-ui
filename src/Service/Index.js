@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getToken } from '../Components/SecureStorage/SecureStorage';
-import { BASE_URL} from '../enironment/environment';
+import { getToken } from '../Components/SecureStorage/Index';
+import { BASE_URL} from '../Enironment/Index';
 
 // Function to make a generic API request
 export const apiRequest = async (req) => {

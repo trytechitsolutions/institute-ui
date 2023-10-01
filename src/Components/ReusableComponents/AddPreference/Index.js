@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { Col, Row, Button } from 'antd';
 
-import InputFields from "../InputFields/InputFields";
-import { onChangeValueBind } from "../CoomonFunctions/CommonFunctions";
+import InputFields from "../InputFields/Index";
+import { onChangeValueBind } from "../CoomonFunctions/Index";
 
 function AddPreference(props) {
     const ChildRef = useRef();
